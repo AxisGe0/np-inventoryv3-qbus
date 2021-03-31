@@ -102,7 +102,7 @@ AddEventHandler('inventory:server:GiveItem', function(name, inventory, item, amo
 	local Target = OtherPlayer.PlayerData.charinfo.firstname..' '..OtherPlayer.PlayerData.charinfo.lastname
 	local YourName = Player.PlayerData.charinfo.firstname..' '..Player.PlayerData.charinfo.lastname
 	if amount ~= 0 then
-		if Player.Functions.RemoveItem(item.name, amount,false, item.info) and OtherPlayer.Functions.AddItem(item.name, amount,false, item.info) then
+		if Player.Functions.RemoveItem(item.name, amount, item.slot) and OtherPlayer.Functions.AddItem(item.name, amount,false, item.info) then
 			TriggerClientEvent('QBCore:Notify', src, "You Sent "..item.label..' To '..Target)
 			TriggerClientEvent('inventory:client:ItemBox',src, QBCore.Shared.Items[item.name], "remove")
 			TriggerClientEvent('QBCore:Notify', name, "You Received "..item.label..' From '..YourName)
