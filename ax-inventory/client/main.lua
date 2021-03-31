@@ -448,9 +448,10 @@ RegisterNUICallback("GiveItem", function(data, cb)
         local pos = GetEntityCoords(GetPlayerPed(-1))
         local dist = GetDistanceBetweenCoords(pos.x, pos.y, pos.z, plyCoords.x, plyCoords.y, plyCoords.z, true)
         if dist < 2.5 then
-            SetCurrentPedWeapon(PlayerPedId(),'WEAPON_UNARMED',true)
-            TriggerServerEvent("inventory:server:GiveItem", playerId, data.inventory, data.item, data.amount)
-            print(data.amount)
+            if data.inventory == 'player' then
+                SetCurrentPedWeapon(PlayerPedId(),'WEAPON_UNARMED',true)
+                TriggerServerEvent("inventory:server:GiveItem", playerId, data.inventory, data.item, data.amount)
+            end
         else
             QBCore.Functions.Notify("No one nearby!", "error")
         end
